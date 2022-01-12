@@ -10,11 +10,19 @@ const inputBlock = document.querySelector(".textarea-input")
 const plus = document.querySelector(".plus")
 const minus = document.querySelector(".minus")
 const wpm = document.querySelector(".wpm")
+const fontsizePlus = document.querySelector(".fontsize-plus")
+const fontsizeMinus = document.querySelector(".fontsize-minus")
+const fontsize = document.querySelector(".fontsize-btn")
 const focusLine = document.querySelector(".focus")
 
 let speed = Math.round(1000 / ( wpm.value / 60 ))
 
 let canStartAgain = true
+
+// Час (мілісекунди) через який почнеться читання
+// Це для того, щоб все в браузері "вляглось" 
+// і можна було б записати відео для соцмереж
+const scrollTimeout = 2000
 
 start.addEventListener("click", () => {
   updateSpeed()
@@ -22,12 +30,23 @@ start.addEventListener("click", () => {
   let words = forComp(inputText)
 
   if (canStartAgain) {
-    showing(words)  
+    setTimeout(() => {
+      showing(words)
+    }, scrollTimeout);
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 })
 
 plus.addEventListener("click", increaseWpm)
 minus.addEventListener("click", decreaseWpm)
+
+fontsizePlus.addEventListener("click", increaseFontsize)
+fontsizeMinus.addEventListener("click", decreaseFontsize)
 
 
 function focusIndex(text) {
@@ -88,17 +107,43 @@ function focusIndex(text) {
 }
 
 
+function getFontsize() {
+  let styles = getComputedStyle(document.documentElement)
+  return styles.getPropertyValue('--fontsize')
+}
+
+
+function increaseFontsize(){
+  console.log("Збільшую шрифт")
+  let currentFontsizePx = getFontsize()
+  let currentFontsize = parseInt(currentFontsizePx.substring(0, 2), 10)
+
+  currentFontsize += 1
+  const doc = document.documentElement
+  doc.style.setProperty('--fontsize', `${currentFontsize}px`)
+  fontsize.value = currentFontsize
+}
+
+function decreaseFontsize(){
+  console.log("Зменшую шрифт")
+  let currentFontsizePx = getFontsize()
+  let currentFontsize = parseInt(currentFontsizePx.substring(0, 2), 10)
+
+  currentFontsize -= 1
+  const doc = document.documentElement
+  doc.style.setProperty('--fontsize', `${currentFontsize}px`)
+  fontsize.value = currentFontsize
+}
+
 function updateSpeed() {
   speed = Math.round(1000 / ( wpm.value / 60 ))
 }
-
 
 function increaseWpm(){
   let currentWpm = parseInt(wpm.value, 10)
   currentWpm += 10
   wpm.value = currentWpm
 }
-
 
 function decreaseWpm(){
   let currentWpm = parseInt(wpm.value, 10)

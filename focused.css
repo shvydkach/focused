@@ -1,5 +1,7 @@
 :root {
-  --focus: #0019a7;
+  --focus: #000000;
+  --app-height: 100%;
+  --fontsize: 30px;
 
   font-size: 20px;
 }
@@ -14,22 +16,23 @@ body {
   font-size: 1rem;
   font-family: sans-serif;
   display: grid;
-  grid-template-rows: minmax(300px, auto) minmax(1fr, auto);
+  grid-template-rows: minmax(auto, 100vh) minmax(auto, auto);
   grid-gap: 10px;
   justify-items: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 .output {
-  width: 350px;
-  height: 350px;
+  width: 95vw;
+  height: 100vh;
+  height: var(--app-height);
   position: relative;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid orange; */
 }
 
 .output-text {
@@ -54,7 +57,7 @@ body {
   position: relative;
   left: 45%; /* Зміна відступу тут*/
   width: auto;
-  font-size: 35px;
+  font-size: var(--fontsize);
   color: var(--focus);
 }
 
@@ -86,9 +89,10 @@ body {
 /* Інші стилі */
 .input {
   width: 100%;
-  height: fit-content;
   min-height: 300px;
-  padding: 25px;
+  height: calc(var(--app-height) + 300px);
+  margin-top: 50px;
+  padding: 1px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,28 +125,57 @@ body {
 }
 
 .start {
+  box-shadow: 5px 5px 0px #a5ce99;
+  background-color: #c5f7b6;
   width: 150px;
+}
+
+.start:hover,
+.start:active {
+  background-color: #c5f7b6;
+  box-shadow: 0px 0px 0px #a5ce99;
+}
+
+.speed-container {
+  margin-top: 50px;
+  min-width: 250px;
 }
 
 .speed {
   width: 225px;
-  height: 100px;
+  height: 75px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.wpm {
+.fontsize-container {
+  margin-top: 25px;
+  min-width: 250px;
+}
+
+.fontsize {
+  width: 225px;
+  height: 75px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.input-btn {
   padding: 5px;
   height: 50px;
   width: 50px;
   text-align: center;
 }
 
-.wpm:focus {
+.input-btn:focus {
   background-color: #f0f0f0;
   box-shadow: 0px 0px 0px #dbdbdb;
 }
+
 
 /* Приховування бокових стрілочок для: 
 Chrome, Safari, Edge, Opera */
@@ -161,10 +194,10 @@ input[type=number] {
 }
 
 textarea { 
-  height: 150px;
-  max-height: 150px;
+  height: 450px;
+  max-height: 450px;
   width: 90%;
-  max-width: 500px;
+  max-width: 500px ;
   padding: 10px;
   outline: none;
   border: none;
@@ -182,7 +215,6 @@ textarea:focus {
 }
 
 .text-input {
-  padding: 5px;
   margin-top: 25px;
   width: 100%;
   height: auto;
