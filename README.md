@@ -1,2 +1,2 @@
-# focused
-Сфокусований швидкочитач
+# Сфокусований швидкочитач
+### shvydkach.github.io/focused

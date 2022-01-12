@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Опис сторінки">
+     <title>Швидкочитач Сфокусований</title>
+     <link rel="shortcut icon" href="./favicon.ico">
+     <link rel="stylesheet" href="./style.css">
+     <script src="./speedreader.js" defer></script>
+</head>
+<body>
+
+  <div class="output">
+    <p class="output-text">
+      <span class="word">
+        <span class="focused">
+          <span class="letter letter1">Швид</span>
+          к
+          <span class="letter letter2">очитач</span>
+        </span>
+      </span>
+    </p>
+  </div>
+
+  <div class="input">
+    <button class="btn start">Розпочати</button>
+
+    <div class="speed">
+      <span class="btn minus">-</span>
+      <input type="number" class="btn wpm" value="300" placeholder="300" min="100" max="700" step="10">
+      <span class="btn plus">+</span>
+    </div>
+
+    <div class="text-input">
+      <textarea class="textarea-input" placeholder="Текст"></textarea>
+    </div>
+  </div>
+</body>
+</html>
